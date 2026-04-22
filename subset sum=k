@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+#define optimize() ios_base::sync_with_stdio(0);cin.tie(0);
+#define endl '\n'
+
+
+int main() 
+{
+  optimize();//remove before interactive problems
+  ll tst,n,i,j,k;
+  cin>>tst;
+  start:
+  while(tst--)
+  {
+    cin>>n;
+    vector<ll>v(n+1);
+    for(i=1;i<=n;i++)
+    {
+      cin>>v[i];
+      v[i]+=v[i-1];
+    }
+    ll ans=0;
+    map<ll,ll> mp;
+    mp[0]++;// mp[k] gives subarray sum =k
+    for(i=1;i<=n;i++)
+    {
+      ans+=mp[v[i]];
+      mp[v[i]]++;
+    }
+    if(ans)cout<<"YES\n";
+    else cout<<"NO\n";
+  }
+  return 0;
+}
